@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"  # Default Redis port
+    volumes:
+      - redis-data:/data
+    command: redis-server --requirepass "redis"  # Optional: Add a password
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000"  # MinIO API port
+      - "9001:9001"  # MinIO Console port
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin  # Change these in production!
+    volumes:
+      - minio-data:/data
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"  # Default MongoDB port
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin  # Change this!
+    volumes:
+      - mongo-data:/data/db
+    restart: unless-stopped
+
+volumes:
+  redis-data:
+  minio-data:
+  mongo-data:
