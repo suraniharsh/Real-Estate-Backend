@@ -5,7 +5,8 @@ const authRoutes = require("./routes/authRoutes");
 const customerRoutes = require("./routes/customerRoutes");
 const agentRoutes = require("./routes/agentRoutes");
 const builderRoutes = require("./routes/builderRoutes");
-const propertyRoutes = require("./routes/propertyRoutes")
+const propertyRoutes = require("./routes/propertyRoutes");
+const inquiryRoutes = require("./routes/inquirRoutes")
 
 const errorHandler = require("./middleware/errorHandler");
 
@@ -23,6 +24,7 @@ app.use("/v1/customers", customerRoutes);
 app.use("/v1/agents", agentRoutes);
 app.use("/v1/builders", builderRoutes);
 app.use("/v1/properties", propertyRoutes);
+app.use("/v1/inquiry" ,inquiryRoutes)
 
 app.get("/", (req, res) => res.send("Real Estate Platform API"));
 

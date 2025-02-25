@@ -4,7 +4,10 @@ require("dotenv").config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGO_URI || "mongodb://realestateuser:realestatepass@localhost:27017/realestateplatform",
+      useNewUrlParser =  true,
+      useUnifiedTopology =  true,
+     );
     logger.info("MongoDB connected");
   } catch (error) {
     logger.error("MongoDB connection error:", error);
