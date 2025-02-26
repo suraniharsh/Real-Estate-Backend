@@ -13,6 +13,12 @@ const propertySchema = new Schema(
       required: true,
       enum: ["agent", "builder"],
     },
+    buyerId: { type: mongoose.Schema.Types.ObjectId, ref: "User", default: null },
+    renterId: { type: mongoose.Schema.Types.ObjectId, ref: "User", default: null },
+    offerPrice: { type: Number, default: null },
+    rentPrice: { type: Number, default: null },
+    rentalDuration: { type: String, default: null },
+    userType: { type: String, required: true },
     propertyDetails: {
       title: { type: String, required: true },
       type: {

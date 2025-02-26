@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI || "mongodb://realestateuser:realestatepass@localhost:27017/realestateplatform",
+    await mongoose.connect(process.env.MONGO_URI || "mongodb://127.0.01/12701/Real_Estate",
       useNewUrlParser =  true,
       useUnifiedTopology =  true,
      );

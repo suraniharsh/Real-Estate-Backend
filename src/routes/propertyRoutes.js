@@ -12,6 +12,7 @@ const {
   restrictToAgentOrBuilder,
 } = require("../middleware/authMiddleware");
 const { multerMiddleware } = require("../middleware/multer");
+const { buyProperty, rentProperty } = require("../controllers/BuyPropertyController");
 
 const router = express.Router();
 
@@ -47,5 +48,10 @@ router.post(
   multerMiddleware,
   uploadPropertyImages
 );
+
+//Buy properties
+router.post("/buy/:propertyId", buyProperty);
+//Rent Poperties
+router.post("/rent/:propertyId", rentProperty);
 
 module.exports = router;
